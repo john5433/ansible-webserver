@@ -1,0 +1,8 @@
+ - name: Install some packages
+   apt:
+     pkg:
+     - openjdk-11-jdk
+     - wget
+     - net-tools
+     - cowsay
+     update_cache: yes
