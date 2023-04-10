@@ -1,0 +1,17 @@
+---
+- name: Test the website
+  hosts: webservers
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Check port 80 is listening on managed node
+    wait_for:
+      port: 80
+      state: started
+      timeout: 3
+
+  - name: Verift apache is available remotely
+    uri:
+      url: http://{{ ansible_host }}/index.html
+    delegate_to: localhost
