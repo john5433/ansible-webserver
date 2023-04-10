@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Delete the workspace') {
            steps {
-               cleansWs()
+               cleanWs()
            }
         }
         stage('Second Stage') {
