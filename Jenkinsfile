@@ -36,7 +36,7 @@ pipeline {
 	}
 	}
       
-	stage ('Install apache & update website ') {
+	stage ('Install apache & update website') {
 	steps {
 	    sh 'export ANSIBLE_HOST-KEY-CHECKING=FALSE && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/apache-install.yml'
 	    sh 'export ANSIBLE_ROLES_PATH=/opt/jenkins/workspace/ansible-pipeline/roles && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/website-update.yml'
@@ -47,7 +47,7 @@ pipeline {
 	    sh 'export ANSIBLE_ROLES_PATH=/opt/jenkins/workspace/ansible-pipeline/roles && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks.website-test.yml'
 	}
 	}
-
+}
 	post {
 	   always {
                echo "Notifying build result by email"
@@ -63,4 +63,4 @@ pipeline {
 		body: "Test Copmplete Build failed."
 	}
     }
-   }
+} 
