@@ -32,4 +32,19 @@ pipeline {
 	}
 	}
       }
+	post {
+	   always {
+               echo "Notifying build result by email"
+	}
+	success {
+	    mail to: 'johnalberto.dev@gmail.com',
+		 subject: "SUCCESS: ${currentBuild.fullDisplayName}",
+		 body: "congratulations !! Test Complete Build passed."
+	}
+	failure {
+	   mail to: 'johnalberto.dev@gmail.com',
+		subject: "FAILURE: ${currentBuild.fullDisplayName}",
+		body: "Test Copmplete Build failed."
+	}
+    }
    }
